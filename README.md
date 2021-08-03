@@ -36,7 +36,7 @@ sc_prop(seurat_object   = data,
 
 ## Output
 
-Visualization is made using ggplot2:
+Visualization is made using ggplot2. Significance stars are added when the comparison is significant after multiple testing correction
 
 ![output](https://github.com/MZoodsma/sc_proportions/blob/61c706fb35d36a82d33d62df443a679f049b5f35/inst/images/dirichlet.png)
 
