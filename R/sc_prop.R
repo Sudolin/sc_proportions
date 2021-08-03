@@ -158,15 +158,13 @@ sc_prop <- function(seurat_object,
   
   # Construct the plot
   # order the celltypes so that higher proportions on average come to the left.
-  print(head(data.combined))
   data.combined %>%
     group_by(celltype) %>%
     summarise(mean = mean(percentage), max = max(percentage)) %>%
     arrange(desc(mean)) -> coordinates
   
   data.combined$condition <- factor(data.combined$condition, levels = conditions)
-  # data.combined$condition <- factor(data.combined$condition, levels = conditions)
-  
+
   # Get the order
   celltypes_ord <- coordinates %>% pull(celltype)
   
@@ -209,38 +207,5 @@ sc_prop <- function(seurat_object,
   pdf(paste0(outdir, 'dirichlet_plot.pdf'), width = 13, height = 6)
   print(pl)
   dev.off()
-  
-  
-  # Prepare dataframe for the significant results. Add the factor celltypes to prevent rearrangement of plots
-  # Columns need to be named group1 and group2 for stat_pvalue_manual
-  # df.sig <- regress.results %>% filter(padj < 0.05)
-  # df.sig$celltype <- factor(df.sig$celltype, levels = celltypes_ord)
-  # df.sig$group1 <- df.sig$condition1
-  # df.sig$group2 <- df.sig$condition2
-  # df.sig$label <- paste0('adj. p = ', round(df.sig$padj, 3))
-  # print(df.sig)
-  # # Merge ypos and change to 10% above max for this celltype
-  # df.sig <- merge(x = df.sig, y = coordinates, by.x = 'celltype', by.y = 'celltype')
-  # df.sig$ypos <- df.sig$max + ((df.sig$max / 100) * 10)
-  # 
-  # cols <- pal_nejm()(length(unique(conditions)))
-  # 
-  #   # 6. Construct the plot
-  #   pdf(paste0(outdir, '/dirichlet_plot.pdf'), width = 13, height = 6)
-  #   print(
-  #     ggplot(data = data.combined,
-  #            aes(x = condition, y = percentage, fill = condition)) +
-  #       geom_point() +
-  #       geom_boxplot() +
-  #       labs(x = 'Condition', y = 'Cell proportion', fill = 'Condition') +
-  #       facet_wrap(~factor(celltype, levels = celltypes_ord), nrow = 1) +
-  #       theme_classic() +
-  #       stat_pvalue_manual(data = df.sig, label = "label",
-  #                          y.position = 'ypos', tip.length = 0.01) +
-  #       theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)) +
-  #       scale_fill_manual(values = cols)
-  #     )
-  #   dev.off()
-  
 }
 
