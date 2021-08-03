@@ -38,6 +38,8 @@ sc_prop(seurat_object   = data,
 
 Visualization is made using ggplot2:
 
+![output](https://github.com/MZoodsma/sc_proportions/blob/61c706fb35d36a82d33d62df443a679f049b5f35/inst/images/dirichlet.png)
+
 Furthermore, several output files are written:
 1. The Dirichlet regression results, comparing each celltype within each condition
 2. The data used to generate the figure
