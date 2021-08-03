@@ -6,17 +6,19 @@
 #'
 #' @return
 #' Output consists of:
-#' 1. dirichlet_plot.pdf: Ggplot2 visualization of the cell proportions per condition
-#' 2. dirichlet_regression_results.csv: Results for all comparisons made
-#' 3. dirichlet_regression_results_sig.csv: Significant results if any
-#'
+#' 1. Ggplot2 visualization of the cell proportions per condition
+#' 2. Dirichlet results for all comparisons made
+#' 3. Significant Dirichlet results if any
+#' 4. Data used to plot the figure to facilitate reproduction of the figure for adjustments
+#' 
 #' @param seurat_object Seurat single-cell RNA sequencing object
 #' @param conditions Vector of conditions to compare. All conditions must be present in the Seurat object. Order in which conditions are given determines order in the final figure
 #' @param celltypes Vector of celltypes to compare in the Seurat object
+#' @param outdir Output directory. Will raise error if does not exist.
 #' @param condition_ident Name of the metadata column containing the condition. Default: condition.
 #' @param sample_ident Name of the metadata column containing the sample information. Default: sample
 #' @param celltype_ident Name of the metadata column (Seurat Ident) containing the celltypes. Default: celltype
-#' @param outdir Output directory. Will raise error if does not exist. Default: current directory
+#' @param cols Color to use for plotting. Will use ggsci::pal_nejm() if not given. Must be equal to the number of conditions supplied.
 #'
 #' @import Seurat
 #' @import DirichletReg
