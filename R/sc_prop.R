@@ -204,7 +204,8 @@ sc_prop <- function(seurat_object,
     
   }
   
-  pdf(paste0(outdir, 'dirichlet_plot.pdf'), width = 13, height = 6)
+  # pdf(paste0(outdir, 'dirichlet_plot.pdf'), width = 13, height = 6)
+  png(paste0(outdir, 'dirichlet.png'), width = 13, height = 6, units = 'in', res = 1200)
   print(pl)
   dev.off()
 }
